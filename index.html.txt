@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>대원전기 SAFETY CRM</title>
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.12/babel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body { margin: 0; font-family: sans-serif; background-color: #f3f4f6; }
+        #root { min-height: 100vh; display: flex; flex-direction: column; }
+    </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
+        // ==========================================
         // import { useState, useMemo, useRef, useEffect } from "react";
 
 // ═══════════════════════════════════════════════
@@ -1167,7 +1172,8 @@ const DdayBadge = ({d}) => {
   return <span style={{...BDG,background:"#1e3a5f",color:"#60a5fa"}}>D-{diff}</span>;
 };
 
-        
+        // ==========================================
+
     </script>
 </body>
 </html>
