@@ -8,41 +8,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js" crossorigin></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.12/babel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style>
-        body { margin: 0; font-family: sans-serif; background-color: #f3f4f6; }
-        #root { min-height: 100vh; display: flex; flex-direction: column; }
-    </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        // 깃허브 서버에 있는 진짜 소스코드를 실시간으로 다운로드해서 강제 실행하는 치트키 스크립트입니다.
-        // 이름이 꼬이거나 경로가 꼬이는 문제를 100% 완벽하게 원천 차단합니다.
+        // 1153줄짜리 대원전기 SAFETY CRM 소스코드를 읽어옵니다.
         fetch('./daewon-safety-crm.jsx')
-            .then(response => response.text())
+            .then(res => res.text())
             .then(code => {
-                // 외부 라이브러리 import 문법 제거 (오류 방지)
+                // 외부 라이브러리 import 문법 강제 제거 (오류 방지)
                 const cleanCode = code.replace(/import\s+[\s\S]*?from\s+['"].*?['"];?/g, '');
                 
-                // 바벨을 통해 리액트 코드를 브라우저용으로 변환 후 주입
+                // 바벨을 통해 브라우저용 코드로 변환 후 실행
                 const transformed = Babel.transform(cleanCode, { presets: ['react'] }).code;
                 const scriptEl = document.createElement('script');
                 scriptEl.text = transformed;
                 document.body.appendChild(scriptEl);
                 
-                // 코드가 다 로드된 후 0.1초 뒤에 메인 화면(SafetyManagementCRM)을 찾아 강제로 화면에 그립니다.
                 setTimeout(() => {
-                    const TargetComponent = window.SafetyManagementCRM || window.App || window.SafetyCRM;
-                    if (TargetComponent) {
-                        ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(TargetComponent));
-                    } else {
-                        document.getElementById('root').innerHTML = "<div style='padding:20px; color:red;'>코드는 읽었으나 시작 컴포넌트 이름을 찾지 못했습니다. 대소문자를 확인해주세요.</div>";
-                    }
+                    // ★ 확인된 진짜 메인 이름인 SafetyManagementCRM을 다이렉트로 완벽하게 구동합니다!
+                    ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(SafetyManagementCRM));
                 }, 100);
             })
             .catch(err => {
-                document.getElementById('root').innerHTML = "<div style='padding:20px; color:red;'>파일을 불러오는 중 오류가 발생했습니다.</div>";
+                document.getElementById('root').innerHTML = "<div style='padding:20px; color:red;'>파일 로드 실패</div>";
             });
     </script>
 </body>
